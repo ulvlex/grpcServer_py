@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package test;
+
+message GenerateRequest {
+  int32 id = 1;
+  string capibara_format = 2;
+  string capibara_slang = 3;
+  repeated string capibara_phrases = 4;
+}
+
+message GenerateResponse {
+  bool success = 1;
+}
+
+message StatementRequest {
+  int32 id = 1;
+}
+
+message StatementResponse {
+  bool status = 1;
+  bytes file_data = 2;
+}
+
+message StatementSlangRequest {
+  string capibara_slang = 1;
+}
+
+message StatementSlangResponse {
+  bool status = 1;
+  bytes file_data = 2;
+}
+
+service TestService {
+  rpc generate (GenerateRequest) returns (GenerateResponse);
+  rpc statement (StatementRequest) returns (StatementResponse);
+  rpc statementSlang (StatementSlangRequest) returns (StatementSlangResponse);
+}
